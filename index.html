@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <!-- Standardizing CSS resets and providing the grid-system framework -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <!-- Linking custom "Tech Vampire" design tokens and glassmorphism styles -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='tech_vampire.css') }}">
+        <!-- Loading the asynchronous logic; 'defer' ensures the DOM is painted before JS execution -->
+        <script src="{{ url_for('static', filename='finscript.js') }}" defer></script>
+    </head>
+    <body>
+        <div class="container-fluid">
+            <!-- Project Identifier: Versioning for iterative data engineering -->
+            <h2>Fin-Engine V1.0</h2>
+            <div class="row">
+                <!-- Sidebar: The Data Intake Subsystem (Aside for semantic separation) -->
+                <aside id="input-window" class="col-3 border">
+                    <div class="card">
+                        <div class="card-header"></div>
+                        <div class="card-body">
+                            <!-- Multipart encoding is required for binary file transfers (CSV packets) -->
+                            <form id="formfordata" enctype="multipart/form-data">
+                                <div class="row">
+                                    <div>
+                                        <span>1.) Import CSV File</span>
+                                        <!-- Label provides the visual 'Hitbox' for the hidden file input -->
+                                        <label for="file-upload" class="btn btn-primary">Import CSV Packet</label>
+                                        <!-- Hidden input stores the file buffer for JS to grab via FormData -->
+                                        <input id="file-upload" type="file" name="file_input_name">
+                                    </div>
+                                    <div>
+                                        <span>2.) Select type of investment</span>
+                                        <!-- Metadata selector: Maps user context to the C-Engine's math parameters -->
+                                        <select name="investment_type">
+                                            <option disabled selected >Choose Asset Type</option>
+                                            <!-- Jinja2 Loop: Maps Python list to UI; enables horizontal scalability -->
+                                            {% for type in assets %}
+                                            <option value="{{type}}">{{type}}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <span>3.) Submit to get back insights!</span>
+                                        <!-- The trigger: Starts the fetch() lifecycle and UI state changes -->
+                                        <button type="submit" class="btn btn-primary" id="runsimButton">Run Simulation</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Main Terminal: The Process Visualization Window -->
+                <main id="terminal_window" class="col-6 border">
+                    <div class="row">
+                        <div class="bg-dark text-success p-3 background-black text-green">
+                            <!-- Latency indicator: Programmatically toggled during the Fetch request -->
+                            <div class="progress mb-3 d-none" id="loading-bar" style="height: 5px;">
+                                <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" style="width: 0%"></div>
+                            </div>
+                            <!-- 'Pre' tag preserves the log formatting from the C-Engine's stdout -->
+                            <pre id="terminal-text"></pre>
+                        </div>
+                    </div>
+                </main>
+
+                <!-- Insights Window: The Data Synthesis Display (Decision Suite) -->
+                <section id="output-window" class="col-3 border">
+                    <div id="output-cards" class="row">
+                        <div class="col-12">
+                            <!-- Card structures act as containers for reactive data injection -->
+                            <div class="card">
+                                <div class="card-body mb-3 p-3">
+                                    Average Return
+                                    <!-- ID Target for JS: Updates with the calculated Central Tendency -->
+                                    <span id="mean-overview">0%</span>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body mb-3 p-3">
+                                    Stability Score
+                                    <!-- ID Target for JS: Dynamic class switching (Safe/Danger) happens here -->
+                                    <span id="stability-overview">0%</span>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body mb-3 p-3">
+                                    Worst Case
+                                    <!-- ID Target for JS: Visualizes the Value-at-Risk (VaR) boundaries -->
+                                    <span id="worstcase-overview">0%</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </body>
+</html>

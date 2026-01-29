@@ -1,0 +1,221 @@
+
+/* BASE ARCHITECTURE:
+   I used a vertical linear gradient to create depth and focus.
+*/
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(180deg, #000000 0%, #12001a 100%);
+    color: #e0e0e0;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* HEADING SYSTEM:
+   Applying text-shadow to create a neon-light effect.
+   Letter-spacing is increased for because it looks nice lol.
+*/
+h2 {
+    color: #ffffff;
+    text-shadow: 0 0 10px #bb86fc, 0 0 20px #6a0dad;
+    margin-bottom: 30px;
+    font-family: 'Inter', sans-serif;
+    letter-spacing: 2px;
+}
+/* GRID SUBSYSTEM:
+   Defining the coordinate space for the simulation dashboard.
+*/
+.container-fluid {
+    width: 100%;
+    max-width: 1400px;
+}
+
+.row {
+    min-height: 70vh;
+    align-items: stretch;
+}
+/*
+   - background: Low-alpha white for transparency.
+   - backdrop-filter: Blurs the background behind the card.
+   - box-shadow: Establishes a 3D elevation (Z-index feel) in a 2D space.
+*/
+.card, .border {
+    background: rgba(255, 255, 255, 0.05) !important;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(157, 0, 255, 0.2) !important;
+    border-radius: 15px;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+}
+
+.card-body {
+    padding: 2rem !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%; /* Ensures the body fills the sidebar height */
+}
+
+#formfordata {
+    width: 100%;
+    height: 100%; /* THIS is what allows spacing to happen */
+}
+
+#formfordata .row {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly; /* Spreads buttons evenly across the height */
+}
+/*
+   Defining the theme for data entry.
+   Semi-transparent backgrounds so the theme can bleed through the inputs.
+*/
+input, select {
+    background: rgba(0, 0, 0, 0.5) !important;
+    color: #bb86fc !important;
+    border: 1px solid rgba(138, 43, 226, 0.5) !important;
+    border-radius: 8px;
+    padding: 10px;
+    width: 90%;
+    max-width: 250px;
+}
+/* Hides native browser file picker to maintain design consistency */
+#file-upload {
+    display: none; /* Hides the ugly default browser picker because i dont like looking at it and neither do you */
+}
+
+.btn {
+    border-radius: 8px;
+    width: 90%;
+    max-width: 250px;
+}
+/*
+   - linear-gradient: Creates a vibrant, energetic CTA (Call to Action).
+   - transition: Smooths the 'Hover' state for professional UX feedback.
+*/
+.btn-primary {
+    background: linear-gradient(45deg, #6a0dad, #b026ff) !important;
+    border: none !important;
+    box-shadow: 0 0 15px rgba(138, 43, 226, 0.4);
+    transition: all 0.3s ease;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 0 25px rgba(176, 38, 255, 0.8);
+    transform: translateY(-2px);
+}
+
+/* making the 3 different main windows look good */
+#terminal-text {
+    color: #bb86fc;
+    text-shadow: 0 0 5px rgba(187, 134, 252, 0.5);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#output-window .col-12 {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+}
+
+#output-window .card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Styling the instructional text */
+#formfordata span {
+    display: block; /* Ensures it stays on its own line above the button */
+    font-size: 1.2rem;
+    color: rgba(187, 134, 252, 0.7); /* The Light Purple with some transparency */
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px; /* Space between text and input */
+    font-family: 'Courier New', Courier, monospace; /* Matches the terminal vibe */
+    text-align: left;
+    width: 90%; /* Matches button width */
+    max-width: 250px;
+}
+
+/* Ensure the wrapper stacks correctly */
+#formfordata .row > div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+.probar_trans {
+    transition: width 3s linear !important;
+}
+/*
+   - inset box-shadow: Simulates a physical screen cutout.
+*/
+.background-black {
+    background-color: #0a000f !important; /* Deepest purple-black */
+    border: 1px solid #6a0dad;
+    box-shadow: inset 0 0 15px #000;
+    min-height: 400px; /* Ensure it doesn't collapse */
+}/* The Card Container on the Right */
+#output-window .card {
+    background: rgba(20, 0, 30, 0.6) !important; /* Slightly darker than sidebar for contrast */
+    border: 1px solid rgba(187, 134, 252, 0.3) !important;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+/* Hover effect to make it feel interactive */
+#output-window .card:hover {
+    transform: scale(1.02);
+    border-color: #bb86fc !important;
+}
+
+/* The Label Text (e.g., "Average Return") */
+.card-body {
+    color: #e0e0e0;
+    font-family: 'Inter', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+/*
+   Targeting specific IDs for the final 'Glow' effect on financial results.
+*/
+#mean-overview, #stability-overview, #worstcase-overview {
+    display: block;
+    margin-top: 10px;
+    font-size: 1.8rem; /* Large enough to read easily */
+    font-weight: bold;
+    color: #00ff41; /* "Success" Green for the numbers */
+    text-shadow: 0 0 10px rgba(0, 255, 65, 0.4);
+    font-family: 'Courier New', monospace;
+}
+/* CONDITIONAL UI MOODS:
+   These classes are programmatically toggled by JavaScript based on simulation data.
+*/
+.status-safe {
+    color: #00ff41 !important; /* Matrix Green */
+    text-shadow: 0 0 15px rgba(0, 255, 65, 0.7);
+}
+
+.status-warning {
+    color: #ffcc00 !important; /* Warning Gold */
+    text-shadow: 0 0 15px rgba(255, 204, 0, 0.7);
+}
+
+.status-danger {
+    color: #ff3131 !important; /* Blood Red */
+    text-shadow: 0 0 15px rgba(255, 49, 49, 0.7);
+}
+
