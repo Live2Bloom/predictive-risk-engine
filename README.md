@@ -44,14 +44,7 @@ Normalization: Scaling raw volatility into a 0-100 "Stability Score."
 
 🛠️ Installation & Setup
 
-# 1. Clone the repository
-git clone [https://github.com/your-username/risk-engine-fullstack.git](https://github.com/your-username/risk-engine-fullstack.git)
-
-# 2. Compile the C Engine
-gcc risk_engine.c -lm -o risk_engine
-
-# 3. Start the Flask Interface
-python app.py
+Simply Paste the link into a browser: predictive-risk-engine-production.up.railway.app
 
 
 🤝 Philosophy of Contribution
