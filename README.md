@@ -45,7 +45,10 @@ Normalization: Scaling raw volatility into a 0-100 "Stability Score."
 
 🛠️ Installation & Setup
 
-Simply Paste the link into a browser: predictive-risk-engine-production.up.railway.app
+1.) Download stable.csv & unstable.csv
+2.) Click the demo at the top of the readme
+3.) import the csv and choose the type (if importing stable.csv choose "EQUITY". If importing unstable.csv choose "CRYPTO")
+4.) Run simulation!
 
 
 🤝 Philosophy of Contribution
