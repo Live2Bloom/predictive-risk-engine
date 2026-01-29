@@ -29,6 +29,7 @@ def response():
         data = request.files["file_input_name"]
 
         # PERSISTENCE: Saving the data to a localized buffer for the C-Engine to access via path.
+        os.makedirs("uploads", exist_ok=True)
         data.save("uploads/returns.csv")
 
         try:
